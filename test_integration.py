@@ -14,3 +14,7 @@ class TestIntegration(unittest.TestCase):
                 num_correct += 1
         percent_correct = num_correct/num_total
         self.assertEqual(percent_correct, 0.95)
+
+
+if __name__ == '__main__':
+    unittest.main()
