@@ -1,4 +1,4 @@
-image_name_matches = {
+match_dict = {
     "testing/Board00001.jpeg": "testing/170119 PHYS12 U9 1.jpeg",
     "testing/Board00002.jpeg": "testing/170119 PHYS12 U9 2.jpeg",
     "testing/Board00003.jpeg": "testing/170120 CHEM11 U3 2.jpeg",
