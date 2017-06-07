@@ -7,7 +7,8 @@ CROP_HEIGHT_RATIO = 0.077  # Top text area of images is ~7.7% of height
 
 
 def only_black(img_array):
-    pass
+    return_value = img_array
+    return return_value
 
 
 def main(input_file):
@@ -19,6 +20,7 @@ def main(input_file):
         crop_height = round(board_image.height*CROP_HEIGHT_RATIO)
         top_region_box = (0, 0, board_image.width, crop_height)
         top_region = board_image.crop(top_region_box)
+        top_region = top_region.convert("HSV")
         # TODO: Process image
         top_region_arr = np.asarray(top_region)
         top_region_arr = only_black(top_region_arr)
