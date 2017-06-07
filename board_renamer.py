@@ -1,8 +1,13 @@
 from PIL import Image
 import pytesseract as tesr
+import numpy as np
 
 
 CROP_HEIGHT_RATIO = 0.077  # Top text area of images is ~7.7% of height
+
+
+def only_black(img_array):
+    pass
 
 
 def main(input_file):
@@ -15,6 +20,8 @@ def main(input_file):
         top_region_box = (0, 0, board_image.width, crop_height)
         top_region = board_image.crop(top_region_box)
         # TODO: Process image
+        top_region_arr = np.asarray(top_region)
+        top_region_arr = only_black(top_region_arr)
         #top_region = top_region.convert("1")
         #new_size = (top_region.width*2, top_region.height*2)
         #top_region = top_region.resize(new_size)
