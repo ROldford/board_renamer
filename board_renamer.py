@@ -4,12 +4,13 @@ import numpy as np
 
 
 CROP_HEIGHT_RATIO = 0.077  # Top text area of images is ~7.7% of height
-VALUE_THRESHOLD = 31
+VALUE_THRESHOLD = 30
+
 
 def only_black(img_array):
     return_value = img_array
     hue, sat, val = np.split(return_value, 3, axis=2)
-    val = np.where(val<VALUE_THRESHOLD, 0, 255)
+    val = np.where(val <= VALUE_THRESHOLD, 0, 255)
     return_value = np.concatenate((hue, sat, val), axis=2)
     return return_value
 
