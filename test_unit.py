@@ -53,8 +53,29 @@ class TestOnlyBlack(unittest.TestCase):
         result_arr = br.only_black(grey_arr)
         np.testing.assert_array_equal(result_arr, expect_arr)
 
-    def test_black_to_black(self):
-        pass
+    def test_blackish_to_black(self):
+        black_arr = np.array([
+            [
+                [0, 0, 0],
+                [64, 0, 10]
+            ],
+            [
+                [128, 0, 20],
+                [192, 0, 30]
+            ]
+        ])
+        expect_arr = np.array([
+            [
+                [0, 0, 0],
+                [64, 0, 0]
+            ],
+            [
+                [128, 0, 0],
+                [192, 0, 0]
+            ]
+        ])
+        result_arr = br.only_black(black_arr)
+        np.testing.assert_array_equal(result_arr, expect_arr)
 
 
 if __name__ == '__main__':
