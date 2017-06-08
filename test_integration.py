@@ -7,8 +7,10 @@ class TestIntegration(unittest.TestCase):
 
     def test_integration(self):
         num_correct = 0
-        num_total = len(matches.match_dict.items())
-        for key, value in matches.match_dict.items():
+        num_total = 1  # len(matches.images_input)
+        for i in range(num_total):
+            key = matches.images_input[i]
+            value = matches.images_output[i]
             new_filepath = br.main(key)
             if new_filepath == value:
                 num_correct += 1

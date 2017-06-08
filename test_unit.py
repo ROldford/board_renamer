@@ -17,14 +17,8 @@ class TestOnlyBlack(unittest.TestCase):
             ]
         ])
         expect_arr = np.array([
-            [
-                [0, 255, 255],
-                [64, 255, 255]
-            ],
-            [
-                [128, 255, 255],
-                [192, 255, 255]
-            ]
+            [[1], [1]],
+            [[1], [1]]
         ])
         result_arr = br.only_black(color_arr)
         np.testing.assert_array_equal(result_arr, expect_arr)
@@ -41,14 +35,8 @@ class TestOnlyBlack(unittest.TestCase):
             ]
         ])
         expect_arr = np.array([
-            [
-                [0, 0, 255],
-                [64, 0, 255]
-            ],
-            [
-                [128, 0, 255],
-                [192, 0, 255]
-            ]
+            [[1], [1]],
+            [[1], [1]]
         ])
         result_arr = br.only_black(grey_arr)
         np.testing.assert_array_equal(result_arr, expect_arr)
@@ -65,14 +53,8 @@ class TestOnlyBlack(unittest.TestCase):
             ]
         ])
         expect_arr = np.array([
-            [
-                [0, 0, 0],
-                [64, 0, 0]
-            ],
-            [
-                [128, 0, 0],
-                [192, 0, 0]
-            ]
+            [[0], [0]],
+            [[0], [0]]
         ])
         result_arr = br.only_black(black_arr)
         np.testing.assert_array_equal(result_arr, expect_arr)

@@ -4,14 +4,14 @@ import numpy as np
 
 
 CROP_HEIGHT_RATIO = 0.077  # Top text area of images is ~7.7% of height
-VALUE_THRESHOLD = 30
+VALUE_THRESHOLD = 40
 
 
 def only_black(img_array):
     return_value = img_array
     hue, sat, val = np.split(return_value, 3, axis=2)
-    val = np.where(val <= VALUE_THRESHOLD, 0, 255)
-    return_value = np.concatenate((hue, sat, val), axis=2)
+    val = np.where(val <= VALUE_THRESHOLD, 0, 1)
+    return_value = val
     return return_value
 
 
@@ -24,14 +24,18 @@ def main(input_file):
         crop_height = round(board_image.height*CROP_HEIGHT_RATIO)
         top_region_box = (0, 0, board_image.width, crop_height)
         top_region = board_image.crop(top_region_box)
-        top_region = top_region.convert("HSV")
+        top_region = top_region.convert("L")
         # TODO: Process image
-        top_region_arr = np.asarray(top_region)
-        top_region_arr = only_black(top_region_arr)
+        top_region_arr = np.asarray(top_region).copy()
+        top_region_arr[top_region_arr <= VALUE_THRESHOLD] = 0
+        top_region_arr[top_region_arr > VALUE_THRESHOLD] = 255
+        #top_region_arr = only_black(top_region_arr)
+        top_region = Image.fromarray(top_region_arr, mode="L")
         #top_region = top_region.convert("1")
         #new_size = (top_region.width*2, top_region.height*2)
         #top_region = top_region.resize(new_size)
         # Recognize text
+        import pdb; pdb.set_trace()  # breakpoint cdaddca8 //
         return_value = tesr.image_to_string(top_region)
     except IOError:
         return_value = None
